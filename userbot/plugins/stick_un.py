@@ -36,7 +36,8 @@ async def sticklet(event):
 
     B = random.randint(0,256)
 
-
+    if "snips" in event.text:
+        return
 
     reply_message = event.message
 

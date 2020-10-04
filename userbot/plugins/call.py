@@ -13,8 +13,10 @@ Available Commands:
 from telethon import events
 import asyncio
 from userbot.utils import admin_cmd
+from userbot import ALIVE_NAME
 
-@borg.on(admin_cmd(pattern=r"(.*)", outgoing=True))
+TEL = str(ALIVE_NAME) if ALIVE_NAME else "@TeleBotSupport"
+@borg.on(admin_cmd(pattern=r"call")))
 
 async def _(event):
 

@@ -12,7 +12,7 @@ if Var.LYDIA_API_KEY:
     api_client = API(api_key)
     lydia = LydiaAI(api_client)
 
-@telebot.on(admin_cmd(pattern="repcf", outgoing=True))
+@telebot.on(admin_cmd(pattern="repcf"))
 async def repcf(event):
     if event.fwd_from:
         return
@@ -27,7 +27,7 @@ async def repcf(event):
     except Exception as e:
         await event.edit(str(e))
 
-@telebot.on(admin_cmd(pattern="addcf", outgoing=True))
+@telebot.on(admin_cmd(pattern="addcf"))
 async def addcf(event):
     if event.fwd_from:
         return
@@ -45,7 +45,7 @@ async def addcf(event):
     else:
         await event.edit("Reply to a user to activate Lydia AI on them")
 
-@telebot.on(admin_cmd(pattern="remcf", outgoing=True))
+@telebot.on(admin_cmd(pattern="remcf"))
 async def remcf(event):
     if event.fwd_from:
         return

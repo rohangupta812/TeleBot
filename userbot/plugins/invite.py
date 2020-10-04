@@ -5,7 +5,7 @@ from telethon import functions
 from userbot.utils import admin_cmd
 
 
-@borg.on(admin_cmd(pattern="invite ?(.*)"))
+@borg.on(admin_cmd(sudo_cmd(pattern="invite ?(.*)")))
 async def _(event):
     if event.fwd_from:
         return

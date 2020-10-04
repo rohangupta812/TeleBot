@@ -19,7 +19,7 @@ os.system("rm -rf *.mp3")
 def bruh(name):
     os.system("instantmusic -q -s "+name)
     
-@telebot.on(admin_cmd(outgoing=True, pattern="spd(?: |$)(.*)"))
+@telebot.on(admin_cmd(sudo_cmd(pattern="spd(?: |$)(.*)")))
 async def _(event):
     if event.fwd_from:
         return
@@ -40,7 +40,7 @@ async def _(event):
           msg = await bot.forward_messages(event.chat_id, respond.message)
           await msg.edit(f"Song name - __{link}__\nUploaded by [TeleBot](https://t.me/TeleBotSupport)")
 
-@telebot.on(admin_cmd(outgoing=True, pattern="netease(?: |$)(.*)"))
+@telebot.on(admin_cmd(sudo_cmdpattern="netease(?: |$)(.*)")))
 async def WooMai(netase):
     if netase.fwd_from:
         return
@@ -69,7 +69,7 @@ async def WooMai(netase):
     await netase.delete()
 
 
-@telebot.on(admin_cmd(outgoing=True, pattern="dzd(?: |$)(.*)"))
+@telebot.on(admin_cmd(sudo_cmd(pattern="dzd(?: |$)(.*)")))
 async def DeezLoader(Deezlod):
     if Deezlod.fwd_from:
         return

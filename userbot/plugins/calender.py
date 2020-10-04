@@ -6,7 +6,7 @@ import json
 from uniborg.util import admin_cmd
 
 
-@borg.on(admin_cmd(pattern="calendar (.*)"))
+@borg.on(admin_cmd(sudo_cmd(pattern="calendar (.*)")))
 async def _(event):
     if event.fwd_from:
         return

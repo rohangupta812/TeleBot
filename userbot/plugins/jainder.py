@@ -6,7 +6,7 @@ import random
 import asyncio
 from userbot.utils import admin_cmd
 
-@borg.on(admin_cmd(pattern=r"jainder(.*)", outgoing=True))
+@borg.on(admin_cmd(sudo_cmd(pattern=r"jainder(.*)")))
 async def _(event):
     if event.fwd_from:
         return

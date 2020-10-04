@@ -7,7 +7,7 @@ from telethon import events
 from userbot.utils import admin_cmd
 
 
-@borg.on(admin_cmd(pattern="screencapture (.*)"))
+@borg.on(admin_cmd(sudo_cmd(pattern="screencapture (.*)")))
 async def _(event):
     if event.fwd_from:
         return

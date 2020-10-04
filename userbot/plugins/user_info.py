@@ -299,7 +299,7 @@ class TGDoc:
 
 
 
-@telebot.on(admin_cmd(pattern=r"u(?:ser)?(\s+[\S\s]+|$)", outgoing=True))
+@telebot.on(admin_cmd(sudo_cmd(pattern=r"u(?:ser)?(\s+[\S\s]+|$)")))
 async def who(event: NewMessage.Event):
     """ For .user command, get info about a user. """
     if event.fwd_from:

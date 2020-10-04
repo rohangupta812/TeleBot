@@ -14,7 +14,7 @@ thumb_image_path = "./TeleBot.png"
 
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "TeleBot User"
 
-@telebot.on(admin_cmd(pattern="send (?P<shortname>\w+)", outgoing=True))
+@telebot.on(admin_cmd(sudo_cmd(pattern="send (?P<shortname>\w+)")))
 async def send(event):
     if event.fwd_from:
         return

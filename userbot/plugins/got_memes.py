@@ -16,7 +16,7 @@ import random
 
 from userbot.utils import admin_cmd
 
-@telebot.on(admin_cmd(pattern="gotm", outgoing=True))
+@telebot.on(admin_cmd(sudo_cmd(pattern="gotm")))
 
 async def _(event):
 

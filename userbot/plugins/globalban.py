@@ -77,8 +77,7 @@ async def handler(tele):
                  except:                          
                     return 
 
-@borg.on(admin_cmd(pattern="gban(?: |$)(.*)"))
-@borg.on(sudo_cmd(pattern="gban(?: |$)(.*)", allow_sudo=True))
+@borg.on(admin_cmd(sudo_cmd(pattern="gban(?: |$)(.*)")))
 async def gspider(rk): 
    lazy = rk ; sender = await lazy.get_sender() ; me = await lazy.client.get_me()
    if not sender.id == me.id:
@@ -129,8 +128,7 @@ async def gspider(rk):
    return await rkp.edit(f"**Gbanned** [{user.first_name}](tg://user?id={user.id}) **in {a} chat(s) , Blocked user and added to Gban watch **") 
         
 
-@borg.on(admin_cmd(pattern="ungban(?: |$)(.*)"))
-@borg.on(sudo_cmd(pattern="ungban(?: |$)(.*)", allow_sudo=True))
+@borg.on(admin_cmd(sudo_cmd(pattern="ungban(?: |$)(.*)")))
 async def gspider(rk):
    lazy = rk ; sender = await lazy.get_sender() ; me = await lazy.client.get_me()
    if not sender.id == me.id:

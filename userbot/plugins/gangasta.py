@@ -3,9 +3,7 @@ import random, re
 from userbot.utils import admin_cmd
 import asyncio 
 
-
-
-@borg.on(admin_cmd(pattern="gangasta ?(.*)"))
+@borg.on(admin_cmd(sudo_cmd(pattern="gangasta ?(.*)")))
 async def _(event):
      if not event.text[0].isalpha() and event.text[0] not in ("/", "#", "@", "!"):
         await event.edit("EVERyBOdy")

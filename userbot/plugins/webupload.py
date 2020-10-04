@@ -8,7 +8,7 @@ import asyncio
 import time
 from userbot.utils import admin_cmd
 
-@telebot.on(admin_cmd(pattern="webupload ?(.+?|) (?:--)(anonfiles|transfer|filebin|anonymousfiles|megaupload|bayfiles)"))
+@telebot.on(admin_cmd(sudo_cmd(pattern="webupload ?(.+?|) (?:--)(anonfiles|transfer|filebin|anonymousfiles|megaupload|bayfiles)")))
 async def _(event):
     if event.fwd_from:
         return

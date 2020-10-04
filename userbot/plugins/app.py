@@ -70,7 +70,7 @@ async def apk(e):
 
 
 
-@telebot.on(admin_cmd(pattern="appr (.*)"))
+@telebot.on(admin_cmd(sudo_cmd(pattern="appr (.*)")))
 
 async def apkr(e):
 

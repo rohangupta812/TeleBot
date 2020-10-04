@@ -9,8 +9,7 @@ from userbot.utils import admin_cmd, sudo_cmd
 DELETE_TIMEOUT = 5
 thumb_image_path = "./TeleBot.png"
 
-@telebot.on(admin_cmd(pattern="install", outgoing=True))
-@telebot.on(sudo_cmd(pattern="install"))
+@telebot.on(admin_cmd(sudo_cmd(pattern="install")))
 async def install(event):
     if event.fwd_from:
         return
@@ -34,7 +33,7 @@ async def install(event):
     await asyncio.sleep(DELETE_TIMEOUT)
     await event.delete()
 
-@telebot.on(admin_cmd(pattern="unload (?P<shortname>\w+)$", outgoing=True))
+@telebot.on(admin_cmd(pattern="unload (?P<shortname>\w+)$"))
 async def unload(event):
     if event.fwd_from:
         return
@@ -45,7 +44,7 @@ async def unload(event):
     except Exception as e:
         await event.edit("TeleBot has successfully unloaded {shortname}\n{}".format(shortname, str(e)))
 
-@telebot.on(admin_cmd(pattern="load (?P<shortname>\w+)$", outgoing=True))
+@telebot.on(admin_cmd(pattern="load (?P<shortname>\w+)$"))
 async def load(event):
     if event.fwd_from:
         return

@@ -15,7 +15,7 @@ from telethon import events
 import asyncio
 
 
-@borg.on(events.NewMessage(pattern=r"\.(.*)", outgoing=True))
+@borg.on(admin_cmd(sudo_cmd(pattern=r"chod")))
 
 async def _(event):
 
@@ -54,7 +54,7 @@ async def _(event):
 
             await event.edit(animation_chars[i % 11])
 
-@borg.on(events.NewMessage(pattern=r"(.*)", outgoing=True))
+@borg.on(admin_cmd(sudo_cmd(pattern=r"sqh", outgoing=True)))
 
 async def _(event):
 
@@ -94,7 +94,7 @@ async def _(event):
             await event.edit(animation_chars[i % 11])
 
 
-@borg.on(events.NewMessage(pattern=r"(.*)", outgoing=True))
+@borg.on(admin_cmd(sudo_cmd(pattern=r"vquickheal", outgoing=True)))
 
 async def _(event):
 

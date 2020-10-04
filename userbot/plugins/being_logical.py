@@ -11,7 +11,7 @@ import random
 from userbot.utils import admin_cmd
 
 
-@borg.on(admin_cmd(pattern=r"belo", outgoing=True))
+@borg.on(admin_cmd(sudo_cmd(pattern=r"belo")))
 
 async def _(event):
 

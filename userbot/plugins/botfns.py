@@ -10,8 +10,7 @@ from userbot import CMD_HELP
 from userbot.utils import admin_cmd, sudo_cmd, edit_or_reply
 from var import Var
 
-@telebot.on(admin_cmd(pattern="purl ?(.*)"))
-@telebot.on(sudo_cmd(pattern="purl ?(.*)"))
+@telebot.on(admin_cmd(sudo_cmd(pattern="purl ?(.*)")))
 async def _(event):
     if event.fwd_from:
         return 
@@ -33,8 +32,7 @@ async def _(event):
           await event.delete()
           await event.client.send_message(event.chat_id, response.message, reply_to=reply_message)
 
-@telebot.on(admin_cmd(pattern="reader ?(.*)"))
-@telebot.on(sudo_cmd(pattern="reader ?(.*)"))
+@telebot.on(admin_cmd(sudo_cmd(pattern="reader ?(.*)")))
 async def _(event):
     if event.fwd_from:
         return 
@@ -59,8 +57,7 @@ async def _(event):
           await event.delete()
           await event.client.send_message(event.chat_id, response.message, reply_to=reply_message)
         
-@telebot.on(admin_cmd(pattern="aud ?(.*)"))        
-@telebot.on(sudo_cmd(pattern="aud ?(.*)")) 
+@telebot.on(admin_cmd(sudo_cmd(pattern="aud ?(.*)")))
 async def _(event):
     if event.fwd_from:
         return 
@@ -88,8 +85,7 @@ async def _(event):
           await event.delete()
           await event.client.send_file(event.chat_id, response.message.media)
 
-@telebot.on(admin_cmd(pattern="instadl ?(.*)"))
-@telebot.on(sudo_cmd(pattern="instadl ?(.*)"))
+@telebot.on(admin_cmd(sudo_cmd(pattern="instadl ?(.*)")))
 async def _(event):
     if event.fwd_from:
         return 
@@ -111,8 +107,7 @@ async def _(event):
           await event.delete()
           await event.client.send_message(event.chat_id, response.message, reply_to=reply_message)
 
-@borg.on(admin_cmd(pattern="stats"))
-@telebot.on(sudo_cmd(pattern="stats"))
+@borg.on(admin_cmd(sudo_cmd(pattern="stats")))
 async def stats(event):
     if event.fwd_from:
         return
@@ -124,7 +119,7 @@ async def stats(event):
     await tap[0].click(event.chat_id)
     await event.delete()
 
-@borg.on(admin_cmd(pattern="xogame$"))
+@borg.on(admin_cmd(sudo_cmd(pattern="xogame$")))
 async def gamez(event):
     if event.fwd_from:
         return
@@ -136,7 +131,7 @@ async def gamez(event):
     await tap[0].click(event.chat_id)
     await event.delete()
 
-@borg.on(admin_cmd(pattern="whisper ?(.*)"))
+@borg.on(admin_cmd(sudo_cmd(pattern="whisper ?(.*)")))
 async def wspr(event):
     if event.fwd_from:
         return
@@ -148,8 +143,10 @@ async def wspr(event):
     await tap[0].click(event.chat_id)
     await event.delete()
 
-@borg.on(admin_cmd(pattern="mod ?(.*)"))
+@borg.on(admin_cmd(sudo_cmd(pattern="mod ?(.*)")))
 async def mod(event):
+    if "modi" in event.text:
+        return
     if event.fwd_from:
         return
     modr = event.pattern_match.group(1)
@@ -160,8 +157,9 @@ async def mod(event):
     await tap[0].click(event.chat_id)
     await event.delete()
 
-@borg.on(admin_cmd(pattern="checkspam ?(.*)"))
+@borg.on(admin_cmd(sudo_cmd(pattern="checkspam")))
 async def _(event):
+    bot = "@spambot"
     if event.fwd_from:
         return
     sysarg = event.pattern_match.group(1)
@@ -176,4 +174,16 @@ async def _(event):
               await borg.send_message(event.chat_id, audio.text)
               await event.delete()
           except YouBlockedUserError:
-              await event.edit("**Error:** `unblock` @spambot `and retry!")    
+              await event.edit("**Error:** `unblock` @spambot `and retry!")
+    elif "@" in sysarg:
+      async with borg.conversation(bot) as conv:
+          try:
+              await conv.send_message("/start")
+              response = await conv.get_response()
+              await conv.send_message("/start " + sysarg)
+              audio = await conv.get_response()
+              final = ("See if you are limited..\n(c)@TeleBotSupport" , "")
+              await borg.send_message(event.chat_id, audio.text)
+              await event.delete()
+          except YouBlockedUserError:
+              await event.edit("**Error:** `unblock` @spambot `and try again!")

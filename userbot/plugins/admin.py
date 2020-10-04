@@ -68,8 +68,7 @@ UNMUTE_RIGHTS = ChatBannedRights(until_date=None, send_messages=False)
 # ================================================
 
 
-@telebot.on(admin_cmd(outgoing=True, pattern="setgpic"))
-@telebot.on(sudo_cmd(outgoing=True, pattern="setgpic", allow_sudo=True))
+@telebot.on(admin_cmd(sudo_cmd(pattern="setgpic")))
 @errors_handler
 async def set_group_photo(gpic):
     """ For .setgpic command, changes the picture of a group """
@@ -107,8 +106,7 @@ async def set_group_photo(gpic):
             await gpic.edit(PP_ERROR)
 
 
-@telebot.on(admin_cmd(outgoing=True, pattern="promote(?: |$)(.*)"))
-@telebot.on(sudo_cmd(outgoing=True, pattern="promote(?: |$)(.*)", allow_sudo=True))
+@telebot.on(admin_cmd(sudo_cmd(pattern="promote(?: |$)(.*)")))
 @errors_handler
 async def promote(promt):
     """ For .promote command, promotes the replied/tagged person """
@@ -159,8 +157,7 @@ async def promote(promt):
             f"CHAT: {promt.chat.title}(`{promt.chat_id}`)")
 
 
-@telebot.on(admin_cmd(outgoing=True, pattern="demote(?: |$)(.*)"))
-@telebot.on(sudo_cmd(outgoing=True, pattern="demote(?: |$)(.*)", allow_sudo=True))
+@telebot.on(admin_cmd(sudo_cmd(pattern="demote(?: |$)(.*)")))
 @errors_handler
 async def demote(dmod):
     """ For .demote command, demotes the replied/tagged person """
@@ -210,8 +207,7 @@ async def demote(dmod):
             f"CHAT: {dmod.chat.title}(`{dmod.chat_id}`)")
 
 
-@borg.on(admin_cmd(pattern="(ban|unban) ?(.*)"))
-@borg.on(sudo_cmd(pattern="(ban|unban) ?(.*)", allow_sudo=True))
+@borg.on(admin_cmd(sudo_cmd(pattern="(ban|unban) ?(.*)")))
 async def _(event):
     # Space weirdness in regex required because argument is optional and other
     # commands start with ".unban"
@@ -242,8 +238,7 @@ async def _(event):
         await event.edit(f"{input_cmd}ned Successfully!")
 
 
-@borg.on(admin_cmd(pattern="pgs ?(.*)"))
-@borg.on(sudo_cmd(pattern="pgs ?(.*)", allow_sudo=True))
+@borg.on(admin_cmd(sudo_cmd(pattern="pgs ?(.*)")))
 async def _(event):
     if event.fwd_from:
         return
@@ -273,8 +268,7 @@ async def _(event):
             await event.edit("**PURGE** Failed!")
 
 
-@borg.on(admin_cmd(pattern="(ban|unban) ?(.*)"))
-@borg.on(sudo_cmd(pattern="(ban|unban) ?(.*)", allow_sudo=True))
+@borg.on(admin_cmd(sudo_cmd(pattern="(ban|unban) ?(.*)")))
 async def _(event):
     # Space weirdness in regex required because argument is optional and other
     # commands start with ".unban"
@@ -337,8 +331,7 @@ async def muter(moot):
             await moot.delete()
 
 
-@borg.on(admin_cmd(pattern="affk(?: |$)(.*)"))
-@borg.on(sudo_cmd(pattern="affk(?: |$)(.*)", allow_sudo=True))
+@borg.on(admin_cmd(sudo_cmd(pattern="affk(?: |$)(.*)")))
 @errors_handler
 async def promote(promt):
     """ For .promote command, promotes the replied/tagged person """
@@ -384,53 +377,7 @@ async def promote(promt):
             f"USER: [{user.first_name}](tg://user?id={user.id})\n"
             f"CHAT: {promt.chat.title}(`{promt.chat_id}`)")
 
-
-@telebot.on(admin_cmd(outgoing=True, pattern="gmute(?: |$)(.*)"))
-@telebot.on(sudo_cmd(outgoing=True, pattern="gmute(?: |$)(.*)", allow_sudo=True))
-@errors_handler
-async def gspider(gspdr):
-    """ For .gmute command, globally mutes the replied/tagged person """
-    # Admin or creator check
-    chat = await gspdr.get_chat()
-    admin = chat.admin_rights
-    creator = chat.creator
-
-    # If not admin and not creator, return
-    if not admin and not creator:
-        await gspdr.edit(NO_ADMIN)
-        return
-
-    # Check if the function running under SQL mode
-    try:
-        from userbot.modules.sql_helper.gmute_sql import gmute
-    except AttributeError:
-        await gspdr.edit(NO_SQL)
-        return
-
-    user, reason = await get_user_from_event(gspdr)
-    if user:
-        pass
-    else:
-        return
-
-    # If pass, inform and start gmuting
-    await gspdr.edit("`Grabs a huge, sticky duct tape!`")
-    if gmute(user.id) is False:
-        await gspdr.edit(
-            '`Error! User probably already gmuted.\nRe-rolls the tape.`')
-    else:
-        if reason:
-            await gspdr.edit(f"`Globally taped!`Reason: {reason}")
-        else:
-            await gspdr.edit("`Globally taped!`")
-
-        if BOTLOG:
-            await gspdr.client.send_message(
-                BOTLOG_CHATID, "#GMUTE\n"
-                f"USER: [{user.first_name}](tg://user?id={user.id})\n"
-                f"CHAT: {gspdr.chat.title}(`{gspdr.chat_id}`)")
-
-@telebot.on(admin_cmd(outgoing=True, pattern="admins$"))
+@telebot.on(admin_cmd(sudo_cmd(outgoing=True, pattern="admins")))
 @errors_handler
 async def get_admin(show):
     """ For .admins command, list all of the admins of the chat. """
@@ -451,8 +398,7 @@ async def get_admin(show):
     await show.edit(mentions, parse_mode="html")
 
 
-@telebot.on(admin_cmd(outgoing=True, pattern="pin(?: |$)(.*)"))
-@telebot.on(sudo_cmd(outgoing=True, pattern="pin(?: |$)(.*)", allow_sudo=True))
+@telebot.on(admin_cmd(sudo_cmd(outgoing=True, pattern="pin(?: |$)(.*)")))
 @errors_handler
 async def pin(msg):
     """ For .pin command, pins the replied/tagged message on the top the chat. """
@@ -498,8 +444,7 @@ async def pin(msg):
             f"LOUD: {not is_silent}")
 
 
-@telebot.on(admin_cmd(outgoing=True, pattern="kick(?: |$)(.*)"))
-@telebot.on(sudo_cmd(outgoing=True, pattern="kick(?: |$)(.*)", allow_sudo=True))
+@telebot.on(admin_cmd(sudo_cmd(outgoing=True, pattern="kick(?: |$)(.*)")))
 @errors_handler
 async def kick(usr):
     """ For .kick command, kicks the replied/tagged person from the group. """
@@ -542,7 +487,7 @@ async def kick(usr):
             f"CHAT: {usr.chat.title}(`{usr.chat_id}`)\n")
 
 
-@telebot.on(admin_cmd(outgoing=True, pattern="users ?(.*)"))
+@telebot.on(admin_cmd(sudo_cmd(outgoing=True, pattern="users ?(.*)"))
 @errors_handler
 async def get_users(show):
     """ For .users command, list all of the users in a chat. """

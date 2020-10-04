@@ -7,7 +7,7 @@ import json
 import sys
 from userbot.utils import admin_cmd
 
-@telebot.on(admin_cmd(pattern="labstack ?(.*)"))
+@telebot.on(admin_cmd(sudo_cmd(pattern="labstack ?(.*)")))
 async def labstack(event):
     if event.fwd_from:
         return

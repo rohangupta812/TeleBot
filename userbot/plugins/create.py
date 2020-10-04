@@ -10,7 +10,7 @@ from userbot.utils import admin_cmd
 from userbot import CMD_HELP
 
 
-@telebot.on(admin_cmd(outgoing=True, pattern="create (b|g|c)(?: |$)(.*)"))
+@telebot.on(admin_cmd(sudo_cmd(pattern="create (b|g|c)(?: |$)(.*)")))
 
 async def telegraphs(grop):
 

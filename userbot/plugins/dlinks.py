@@ -37,7 +37,7 @@ def subprocess_run(cmd):
     return talk
 
 
-@telebot.on(admin_cmd(outgoing=True, pattern=r"direct(?: |$)([\s\S]*)"))
+@telebot.on(admin_cmd(sudo_cmd(pattern=r"direct(?: |$)([\s\S]*)")))
 async def direct_link_generator(request):
     """ direct links generator """
     await request.edit("`Processing...`")

@@ -25,7 +25,7 @@ from userbot.utils import register
 from telethon.tl.types import DocumentAttributeAudio
 from userbot.utils import admin_cmd
 
-@telebot.on(admin_cmd(outgoing=True, pattern=r"go (.*)"))
+@telebot.on(admin_cmd(sudo_cmd(pattern=r"go (.*)")))
 async def gsearch(q_event):
     """ For .google command, do a Google search from @TeleBotHelp. """
     match = q_event.pattern_match.group(1)
@@ -52,7 +52,7 @@ async def gsearch(q_event):
                        msg,
                        link_preview=False)
                        
-@telebot.on(admin_cmd("duckduckgo (.*)"))
+@telebot.on(admin_cmd(sudo_cmd("duckduckgo (.*)")))
 async def _(event):
     if event.fwd_from:
         return
@@ -64,7 +64,7 @@ async def _(event):
     else:
         await event.edit("something is wrong. please try again later.")
         
-@telebot.on(admin_cmd(pattern="ggl (.*)"))
+@telebot.on(admin_cmd(sudo_cmd(pattern="ggl (.*)")))
 async def _(event):
     if event.fwd_from:
         return

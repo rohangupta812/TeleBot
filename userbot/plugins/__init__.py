@@ -32,6 +32,11 @@ if Var.PMSECURITY.lower() == "off":
 else:
  pm = "Enabled"
  
+if Var.HEROKU_API_KEY:
+    hk = "Connected"
+else:
+    hk = "Disconnected"
+    
 TELEUSER = str(ALIVE_NAME) if ALIVE_NAME else "@TeleBotSupport"
 
 tele =f"TeleBot Version: {telever}\n"
@@ -40,6 +45,7 @@ tele +=f"Assistant Bot: {bots}\n"
 tele +=f"Lydia: {lyd}\n"
 tele +=f"Sudo: {sudo}\n"
 tele +=f"PMSecurity: {pm}\n"
+tele +=f"Heroku: {hk}\n"
 tele +=f"\nVisit @TeleBotSupport for assistance.\n"
 telestats = (f"{tele}")
 

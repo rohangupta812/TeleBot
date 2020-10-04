@@ -4,7 +4,7 @@
 from userbot.utils import register
 from userbot.utils import admin_cmd
 
-@telebot.on(admin_cmd(outgoing=True, pattern="tut"))
+@telebot.on(admin_cmd(pattern="tut"))
 
 async def join(e):
 

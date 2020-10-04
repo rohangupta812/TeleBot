@@ -35,9 +35,9 @@ async def _(event):
         if song.lyrics:
             reply = song.format()
         else:
-            reply = "Couldn't find any lyrics for that song! try with artist name along with song if still doesnt work try `.glyrics`"
+            reply = "Couldn't find any lyrics for that song!"
     else:
-        reply = "lyrics not found! try with artist name along with song if still doesnt work try `.glyrics`"  
+        reply = "Lyrics not found! try with artist name along with song!"  
     if len(reply) > Config.MAX_MESSAGE_SIZE_LIMIT:
         with io.BytesIO(str.encode(reply)) as out_file:
             out_file.name = "lyrics.text"
@@ -53,7 +53,7 @@ async def _(event):
     else:
         await event.edit(reply)       
 
-@borg.on(admin_cmd(outgoing=True, pattern="glyrics ?(.*)"))
+@borg.on(admin_cmd(pattern="glyrics ?(.*)"))
 async def lyrics(lyric):
     if lyric.pattern_match.group(1):
         query = lyric.pattern_match.group(1)

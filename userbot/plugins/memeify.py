@@ -6,8 +6,7 @@ from PIL import Image, ImageFont, ImageDraw
 import textwrap, os
 from userbot.utils import admin_cmd, sudo_cmd
 
-@telebot.on(admin_cmd(pattern="mmf ?(.*)"))
-@telebot.on(sudo_cmd(pattern="mmf ?(.*)", incoming=True))
+@telebot.on(admin_cmd(sudo_cmd(pattern="mmf ?(.*)")))
 async def handler(event):
     if event.fwd_from:
         return

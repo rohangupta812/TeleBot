@@ -26,7 +26,7 @@ useragent = 'Mozilla/5.0 (Linux; Android 9; SM-G960F Build/PPR1.180610.011; wv) 
 opener.addheaders = [('User-agent', useragent)]
 
 
-@telebot.on(admin_cmd(outgoing=True, pattern=r"reverse(?: |)(\d*)"))
+@telebot.on(admin_cmd(sudo_cmd(pattern=r"reverse(?: |)(\d*)")))
 @errors_handler
 async def okgoogle(img):
     """ For .reverse command, Google search images and stickers. """

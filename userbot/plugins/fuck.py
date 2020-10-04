@@ -13,7 +13,7 @@ from telethon import events
 import asyncio
 from userbot.utils import admin_cmd
 
-@telebot.on(admin_cmd(pattern=r"\.(.*)", outgoing=True))
+@telebot.on(admin_cmd(sudo_cmd(pattern=r"fuk")))
 
 async def _(event):
 
@@ -50,7 +50,7 @@ async def _(event):
             await event.edit(animation_chars[i % 4])
 
 
-@telebot.on(admin_cmd(pattern=r"(.*)", outgoing=True))
+@telebot.on(admin_cmd(sudo_cmd(pattern=r"sux")))
 
 async def _(event):
 
@@ -93,7 +93,7 @@ async def _(event):
 
 
 
-@telebot.on(admin_cmd(pattern=r"(.*)", outgoing=True))
+@telebot.on(admin_cmd(sudo_cmd(pattern=r"kiss")))
 
 async def _(event):
 

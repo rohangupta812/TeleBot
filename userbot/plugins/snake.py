@@ -18,7 +18,7 @@ from userbot.utils import admin_cmd
 
 
 
-@borg.on(admin_cmd(pattern=r"(.*)", outgoing=True))
+@borg.on(admin_cmd(sudo_cmd(pattern=r"(.*)")))
 
 async def _(event):
 

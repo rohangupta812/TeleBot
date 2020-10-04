@@ -37,7 +37,7 @@ async def ocr_space_file(filename,
     return r.json()
 
 
-@telebot.on(admin_cmd(pattern="ocr(?: |$)(.*)", outgoing=True))
+@telebot.on(admin_cmd(sudo_cmd(pattern="ocr(?: |$)(.*)")))
 async def ocr(event):
     await event.edit("`Reading...`")
     if not os.path.isdir(TEMP_DOWNLOAD_DIRECTORY):

@@ -97,7 +97,7 @@ async def tweets(text1,text2):
         return "temp.jpg"      
 
 
-@telebot.on(admin_cmd(pattern="trump(?: |$)(.*)", outgoing=True))
+@telebot.on(admin_cmd(sudo_cmd(pattern="trump(?: |$)(.*)")))
 async def nekobot(borg):
     text = borg.pattern_match.group(1)
     reply_to_id = borg.message
@@ -124,7 +124,7 @@ async def nekobot(borg):
     await borg.client.send_file(borg.chat_id , borgfile , reply_to = reply_to_id ) 
     await borg.delete()
 
-@telebot.on(admin_cmd(pattern="modi(?: |$)(.*)", outgoing=True))
+@telebot.on(admin_cmd(sudo_cmd(pattern="modi(?: |$)(.*)")))
 async def nekobot(borg):
     text = borg.pattern_match.group(1)
     reply_to_id = borg.message
@@ -151,7 +151,7 @@ async def nekobot(borg):
     await borg.client.send_file(borg.chat_id , borgfile , reply_to = reply_to_id ) 
     await borg.delete() 
 
-@telebot.on(admin_cmd(pattern="cmm(?: |$)(.*)", outgoing=True))
+@telebot.on(admin_cmd(sudo_cmd(pattern="cmm(?: |$)(.*)")))
 async def nekobot(borg):
     text = borg.pattern_match.group(1)
     reply_to_id = borg.message
@@ -178,7 +178,7 @@ async def nekobot(borg):
     await borg.client.send_file(borg.chat_id , borgfile , reply_to = reply_to_id ) 
     await borg.delete()
 
-@telebot.on(admin_cmd(pattern="kanna(?: |$)(.*)", outgoing=True))
+@telebot.on(admin_cmd(sudo_cmd(pattern="kanna(?: |$)(.*)")))
 async def nekobot(borg):
     text = borg.pattern_match.group(1)
     reply_to_id = borg.message

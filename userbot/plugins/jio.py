@@ -9,7 +9,7 @@ from uniborg.util import admin_cmd
 
 
 
-@borg.on(admin_cmd(pattern=r"jio"))
+@borg.on(admin_cmd(sudo_cmd(pattern=r"jio")))
 
 async def _(event):
 

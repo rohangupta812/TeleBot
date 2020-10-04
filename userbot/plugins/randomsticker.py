@@ -15,7 +15,7 @@ def choser(cmd, pack, blacklist=None):
     if blacklist is None:
         blacklist = {}
     docs = None
-    @borg.on(admin_cmd(pattern=rf'{cmd}', outgoing=True))
+    @borg.on(admin_cmd(sudo_cmd(pattern=rf'{cmd}')))
     async def handler(event):
         await event.delete()
 

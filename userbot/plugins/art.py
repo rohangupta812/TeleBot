@@ -72,21 +72,21 @@ H = ("▬▬▬.◙.▬▬▬ \n"
 "╬═╬/▌ \n"
 "╬═╬/ \\n")
 
-@borg.on(admin_cmd(pattern=r"monster"))
+@borg.on(admin_cmd(sudo_cmd(pattern=r"monster")))
 async def bluedevilmonster(monster):
     await monster.edit(M)
-@borg.on(admin_cmd(pattern=r"pig"))
+@borg.on(admin_cmd(sudo_cmd(pattern=r"pig")))
 async def bluedevipig(pig):
     await pig.edit(P)
-@borg.on(admin_cmd(pattern=r"kiler"))
+@borg.on(admin_cmd(sudo_cmd(pattern=r"kiler")))
 async def bluedevikiller(kiler):
     await kiler.edit(K)
-@borg.on(admin_cmd(pattern=r"gun"))
+@borg.on(admin_cmd(sudo_cmd(pattern=r"gun")))
 async def bluedevigun(gun):
     await gun.edit(G)
-@borg.on(admin_cmd(pattern=r"dog"))
+@borg.on(admin_cmd(sudo_cmd(pattern=r"dog")))
 async def bluedevidog(dog):
     await dog.edit(D)
-@borg.on(admin_cmd(pattern=r"hmf"))
+@borg.on(admin_cmd(sudo_cmd(pattern=r"hmf")))
 async def bluedevihmf(hmf):
     await hmf.edit(H)
